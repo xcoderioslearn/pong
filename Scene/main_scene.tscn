@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://bp67dw205kwnj"]
+
+[ext_resource type="Script" uid="uid://dt8m8p7de2g82" path="res://Script/main_scene.gd" id="1_1d8q1"]
+[ext_resource type="PackedScene" uid="uid://d1r2av5sb3axk" path="res://Scene/ball.tscn" id="1_06yma"]
+[ext_resource type="PackedScene" uid="uid://bnaip0cajfnr8" path="res://Scene/playerpaddle.tscn" id="2_4kvl3"]
+[ext_resource type="Script" uid="uid://clj8hcvkoolcj" path="res://Script/ball.gd" id="2_lee88"]
+[ext_resource type="Script" uid="uid://dchlm1d5yl43v" path="res://Script/playerpaddle.gd" id="3_4kvl3"]
+[ext_resource type="PackedScene" uid="uid://cimww0junjxbb" path="res://Scene/paddle.tscn" id="3_lttqn"]
+[ext_resource type="Script" uid="uid://7poruwxq2ofb" path="res://Script/aipaddle.gd" id="5_lttqn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1d8q1"]
+size = Vector2(1927, 33)
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_1d8q1")
+
+[node name="Ball" parent="." instance=ExtResource("1_06yma")]
+position = Vector2(960, 540)
+script = ExtResource("2_lee88")
+
+[node name="Player" parent="." instance=ExtResource("2_4kvl3")]
+position = Vector2(50, 540)
+script = ExtResource("3_4kvl3")
+
+[node name="Paddle" parent="." instance=ExtResource("3_lttqn")]
+position = Vector2(1870, 540)
+script = ExtResource("5_lttqn")
+ball = NodePath("../Ball")
+
+[node name="LeftScore" type="Label" parent="."]
+offset_left = 560.0
+offset_top = 30.0
+offset_right = 719.0
+offset_bottom = 108.0
+theme_override_font_sizes/font_size = 40
+text = "Player : "
+
+[node name="RightScore" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1360.0
+offset_top = 30.0
+offset_right = 1519.0
+offset_bottom = 108.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+text = "PC :"
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2(960, 10)
+shape = SubResource("RectangleShape2D_1d8q1")
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 1080)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+position = Vector2(960, -10)
+shape = SubResource("RectangleShape2D_1d8q1")
