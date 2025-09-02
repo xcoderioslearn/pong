@@ -14,9 +14,7 @@ func reset_ball() -> void:
 	global_position = get_viewport_rect().size / 2
 	speed = start_speed
 
-	var x := 0.0
-	while abs(x) < 0.5:
-		x = randf_range(-1.0, 1.0)
+	var x = (-1.0 if randf() < 0.5 else 1.0) * randf_range(0.5, 1.0)
 	var y = randf_range(-0.6, 0.6)
 	direction = Vector2(x, y).normalized()
 
