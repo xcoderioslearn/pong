@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp67dw205kwnj"]
+[gd_scene load_steps=11 format=3 uid="uid://bp67dw205kwnj"]
 
 [ext_resource type="Script" uid="uid://dt8m8p7de2g82" path="res://Script/main_scene.gd" id="1_1d8q1"]
 [ext_resource type="PackedScene" uid="uid://d1r2av5sb3axk" path="res://Scene/ball.tscn" id="1_06yma"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dchlm1d5yl43v" path="res://Script/playerpaddle.gd" id="3_4kvl3"]
 [ext_resource type="PackedScene" uid="uid://cimww0junjxbb" path="res://Scene/paddle.tscn" id="3_lttqn"]
 [ext_resource type="Script" uid="uid://7poruwxq2ofb" path="res://Script/aipaddle.gd" id="5_lttqn"]
+[ext_resource type="Script" uid="uid://brfmilv8a6cl8" path="res://Script/wall.gd" id="8_k2rys"]
 
 [sub_resource type="SystemFont" id="SystemFont_1d8q1"]
 
@@ -74,7 +75,8 @@ text = "0
 
 [node name="Walls" type="Node2D" parent="."]
 
-[node name="TopWall" type="StaticBody2D" parent="Walls"]
+[node name="TopWall" type="StaticBody2D" parent="Walls" groups=["wall"]]
+script = ExtResource("8_k2rys")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
 position = Vector2(960, 10)
@@ -86,8 +88,9 @@ offset_right = 1922.0
 offset_bottom = 24.0
 color = Color(0, 0, 0, 1)
 
-[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+[node name="BottomWall" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(0, 1080)
+script = ExtResource("8_k2rys")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
 position = Vector2(960, -10)
