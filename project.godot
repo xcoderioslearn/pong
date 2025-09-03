@@ -27,3 +27,6 @@ window/stretch/mode="canvas_items"
 
 paddle=""
 wall=""
+sfx_paddle_hit=""
+sfx_wall_hit=""
+sfx_score=""
